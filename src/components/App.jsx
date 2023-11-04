@@ -50,19 +50,20 @@ export const App = () => {
     }
   };
     fetchImgs();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchWord, page]);
 
   useEffect(() => {
-  if (page>1) {
-    window.scrollBy({
-            top: 500,
-            behavior: "smooth",
-          })
-  }
+    if (page > 1) {
+      window.scrollBy({
+        top: 500,
+        behavior: "smooth",
+      })
+    }
     
-  }, [page])
+  }, [page]);
   
-  
+
   
   const openModal = data => {
     setIsOpenModal(true);
