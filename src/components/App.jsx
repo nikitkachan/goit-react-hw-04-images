@@ -32,7 +32,7 @@ export const App = () => {
       
       const result = await fetchImages(searchWord, page)
      
-      if (images !== null) {
+      if (page>1) {
         setImages(prev => [...prev, ...result.hits]);
         setIsShown(true);
       } else {
@@ -42,7 +42,17 @@ export const App = () => {
       
       if (result.hits.length <= 11) {
         setIsShown(false)
-      }
+      };
+
+      const scrollDown = () => {
+        window.scrollBy({
+          top: 500,
+          behavior: "smooth",
+        })
+      };
+      
+      await scrollDown();
+
     } catch (error) {
       setError(error.message);
     } finally {
@@ -50,20 +60,8 @@ export const App = () => {
     }
   };
     fetchImgs();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+ 
   }, [searchWord, page]);
-
-  useEffect(() => {
-    if (page > 1) {
-      window.scrollBy({
-        top: 500,
-        behavior: "smooth",
-      })
-    }
-    
-  }, [page]);
-  
-
   
   const openModal = data => {
     setIsOpenModal(true);
