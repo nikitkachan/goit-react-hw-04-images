@@ -7,6 +7,7 @@ import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem'
 import Loader from './Loader/Loader'
 import Button from './Button/Button'
 import { Modal } from './Modal/Modal'
+import { animateScroll } from 'react-scroll'
 
 export const App = () => {
   
@@ -53,14 +54,14 @@ export const App = () => {
  
   }, [searchWord, page]);
 
-  useEffect(() => {
-    if (images.length>12) {
-      window.scrollBy({
-          top: 500,
-          behavior: "smooth",
-        })
-    } 
-  }, [images]);
+  // useEffect(() => {
+  //   if (images.length>12) {
+  //     window.scrollBy({
+  //         top: 500,
+  //         behavior: "smooth",
+  //       })
+  //   } 
+  // }, [images]);
   
   const openModal = data => {
     setIsOpenModal(true);
@@ -78,8 +79,17 @@ export const App = () => {
     setImages([]);
   };
     
+const scrollOnMoreButton = () => {
+    animateScroll.scrollToBottom({
+      duration: 1000,
+      delay: 10,
+      smooth: 'linear',
+    });
+  };
+
   const onLoadMoreHandler = () => {
     setPage(page => page + 1);
+    scrollOnMoreButton();
   };
 
     return (

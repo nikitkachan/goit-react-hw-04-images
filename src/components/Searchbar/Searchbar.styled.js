@@ -14,7 +14,7 @@ export const StyledSearchBar = styled.header`
   padding-top: 12px;
   padding-bottom: 12px;
   color: #fff;
-  background-color: #aaaaaa;
+  background-color: #eeeeee;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
     
@@ -26,6 +26,8 @@ export const StyledSearchBar = styled.header`
   background-color: #fff;
   border-radius: 5px;
   overflow: hidden;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
  }
 
 .button {
@@ -44,6 +46,7 @@ export const StyledSearchBar = styled.header`
 
 .button:hover {
   opacity: 1;
+background-color: #69a5ff;
 }
 
 .button-label {
