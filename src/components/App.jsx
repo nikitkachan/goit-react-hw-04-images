@@ -11,7 +11,7 @@ import { Modal } from './Modal/Modal'
 export const App = () => {
   
   const [searchWord, setSearchWord] = useState(null);
-  const [images, setImages] = useState(null);
+  const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isShown, setIsShown] = useState(false);
@@ -43,16 +43,6 @@ export const App = () => {
       if (result.hits.length <= 11) {
         setIsShown(false)
       };
-
-      const scrollDown = () => {
-        window.scrollBy({
-          top: 500,
-          behavior: "smooth",
-        })
-      };
-      
-      await scrollDown();
-
     } catch (error) {
       setError(error.message);
     } finally {
@@ -62,6 +52,15 @@ export const App = () => {
     fetchImgs();
  
   }, [searchWord, page]);
+
+  useEffect(() => {
+    if (images.length>12) {
+      window.scrollBy({
+          top: 500,
+          behavior: "smooth",
+        })
+    } 
+  }, [images]);
   
   const openModal = data => {
     setIsOpenModal(true);
@@ -76,7 +75,7 @@ export const App = () => {
   const onSubmit = searchQuery => {
     setSearchWord(searchQuery);
     setPage(1);
-    setImages(null);
+    setImages([]);
   };
     
   const onLoadMoreHandler = () => {
@@ -92,10 +91,10 @@ export const App = () => {
           </p>
         )}
         <ImageGallery>
-          {images !== null && <ImageGalleryItem data={images} openModal={openModal} />}
+          {images !== [] && <ImageGalleryItem data={images} openModal={openModal} />}
         </ImageGallery> 
          {isLoading && <Loader />}
-        {images !== null && isShown && <Button onLoadMoreHandler={onLoadMoreHandler} />}
+        {images !== [] && isShown && <Button onLoadMoreHandler={onLoadMoreHandler} />}
         {isOpenModal && (
           <Modal
             closeModal={closeModal}
